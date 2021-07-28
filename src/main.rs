@@ -15,16 +15,16 @@ fn main() -> Result<(), String> {
     // Read settings from cmd line arguments
     let mut settings = Settings::from_args();
 
-    let level;
+    let log_level;
     match env::var("RUST_LOG") {
         Err(_) => {
             match settings.verbose {
-                0 => level = "warn",
-                1 => level = "info",
-                2 => level = "debug",
-                _ => level = "trace",
+                0 => log_level = "warn",
+                1 => log_level = "info",
+                2 => log_level = "debug",
+                _ => log_level = "trace",
             }
-            env::set_var("RUST_LOG", level);
+            env::set_var("RUST_LOG", log_level);
         }
         _ => {}
     }
